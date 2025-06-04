@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anılarımız</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff0f5;
+      color: #880e4f;
+      padding: 30px 20px;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+      z-index: 2;
+      position: relative;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(136,14,79,0.3);
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(136,14,79,0.6);
+    }
+
+    .note {
+      max-width: 700px;
+      margin: 20px auto;
+      color: #880e4f;
+      font-style: italic;
+      font-size: 1.1em;
+    }
+
+    a.back-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #880e4f;
+      color: white;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      margin-top: 30px;
+      z-index: 2;
+      position: relative;
+    }
+
+    a.back-btn:hover {
+      background-color: #ad1457;
+    }
+
+    /* Kalp animasyonu */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      color: #ff5e88;
+      animation: float 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Bizim Anılar</h1>
+
+   <div class="gallery">
+    <img src="biz.jpg" alt="Ayşe ve Ben" />
+    <img src="anıtkabir.jpg" alt="Doğum Günü" />
+    <img src="besti.jpg" alt="Tatilde" />
+    <img src="aşkkadın.jpg" alt="Kutlama" />
+  </div>
+
+  <p class="note">
+     Bilmiyorum uzun bir süreçten geçtik seninle iyi veya kötü artık ne ise veya kime göreyse bunlar önemli değil benden hep bi beklenti içerisindeydin ve hakkında bende senden beklenti içerisindeyim ne de olsa ama
+   seninkiler ve benimkiler hep farklıydı. Belki sana çiçekli böcekli kağıt hazırlayamam belki sana bir demet çiçek veremem veya ne bileyim sana kağıttan hayvan vb. gibi şeyler yapamam ama bunu yapabilirim.
+   (Bir çok şeyde ilkim oldun ve bu benim yaptığım ilk sitem haberin olsun.)
+  </p>
+
+  <a href="index.html" class="back-btn">Ana Sayfaya Dön</a>
+
+  <!-- Kalp Animasyonu -->
+  <div class="hearts"></div>
+
+  <script>
+    const container = document.querySelector(".hearts");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "❤️";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+      container.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+
+</body>
+</html>
